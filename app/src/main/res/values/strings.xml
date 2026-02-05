@@ -4,4 +4,10 @@
     <string name="cultura">Cultura</string>
     <string name="deporte">Deporte</string>
     <string name="ocio">Ocio</string>
+    <string name="madrid">Madrid</string>
+    <string name="prado">Múseo del Prado</string>
+    <string name="pradoDesc">The Museo del Prado is the most important museum in Madrid and the most visited in Spain, as it currently houses the largest collection of Spanish paintings in the world. Located on Paseo de Prado, it is one of the best art galleries in the world and accommodates masterpieces of Spanish, Italian, French, Flemish and Dutch painting, among others.</string>
+    <string name="berlin">Berlin</string>
+    <string name="buenosAires">Buenos Aire</string>
+    <string name="auckland">Auckland</string>
 </resources>
