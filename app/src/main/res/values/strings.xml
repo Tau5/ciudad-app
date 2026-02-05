@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">P4_Ciudad_PabloAlonsoSergioRodriguez</string>
+    <string name="restauracion">Restauración</string>
+    <string name="cultura">Cultura</string>
+    <string name="deporte">Deporte</string>
+    <string name="ocio">Ocio</string>
 </resources>
