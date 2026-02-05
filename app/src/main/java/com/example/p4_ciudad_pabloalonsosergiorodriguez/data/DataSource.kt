@@ -16,9 +16,11 @@ data object DataSource {
         ),
     )
 
-    val ciudad = City(
-        name = R.string.madrid,
-        places = places,
-        position = TODO(),
+    val ciudades: List<City> = listOf(
+        City(
+            name = R.string.madrid,
+            places = places,
+            position = Position(longitude = -3.7, latitude = 40.416667 ),
+        )
     )
 }
