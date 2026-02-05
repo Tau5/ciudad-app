@@ -6,7 +6,7 @@ import org.maplibre.spatialk.geojson.Position
 
 data object DataSource {
 
-    var places: List<Place> = listOf(
+    val places: List<Place> = listOf(
         Place(
             category = Category.Deporte,
             name = R.string.prado,
