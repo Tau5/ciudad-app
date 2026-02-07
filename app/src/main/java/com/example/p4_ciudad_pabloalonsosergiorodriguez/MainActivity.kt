@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.p4_ciudad_pabloalonsosergiorodriguez.components.MainHost
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.ui.theme.P4_Ciudad_PabloAlonsoSergioRodriguezTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             P4_Ciudad_PabloAlonsoSergioRodriguezTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
+                    MainHost(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
