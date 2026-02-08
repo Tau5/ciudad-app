@@ -1,5 +1,6 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -15,7 +16,8 @@ fun <T>SelectionList(
 ) {
     LazyColumn(modifier) {
        items(options) {
-            Button(onClick = { onSelect(it.second) }) {
+            Button(onClick = { onSelect(it.second) },
+                modifier = Modifier.fillMaxWidth()) {
                 Text(it.first)
             }
        }
