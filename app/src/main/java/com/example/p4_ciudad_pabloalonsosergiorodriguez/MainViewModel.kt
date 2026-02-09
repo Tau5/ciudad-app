@@ -80,6 +80,13 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    suspend fun viewRandomPlace() {
+        selectedCity.value?.let { city ->
+            val place = city.places.random()
+            setPlace(place)
+        }
+    }
+
     fun tryChangeScreen(navHostController: NavHostController) {
         nextScreen?.let {
             navHostController.navigate(it.name)

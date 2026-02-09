@@ -40,9 +40,7 @@ fun SelectionHost(
 ) {
     val coroutineScope = rememberCoroutineScope()
     var categoryList = Category.entries.map{Pair(stringResource(it.nombre), it)}
-    ElevatedCard(modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 18.dp),
-        shape = RoundedCornerShape(16.dp)
-    ) {
+    ElevatedCard(modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 18.dp)) {
         NavHost(
             navController,
             startDestination = "CategorySelection",
