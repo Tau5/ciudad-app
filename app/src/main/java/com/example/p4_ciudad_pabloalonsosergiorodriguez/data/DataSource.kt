@@ -20,8 +20,8 @@ data object DataSource {
             name = R.string.parqueAtracciones,
             description = R.string.parqueAtraccionesDesc,
             position = Position(
-                longitude = 3.4503,
-                latitude = 40.2446
+                longitude = -3.751789,
+                latitude = 40.411289
             ),
             urlWeb = "https://www.parquedeatracciones.es/",
             img = R.drawable.c870x524_338597640
