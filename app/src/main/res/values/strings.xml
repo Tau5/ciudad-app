@@ -4,10 +4,108 @@
     <string name="cultura">Cultura</string>
     <string name="deporte">Deporte</string>
     <string name="ocio">Ocio</string>
+
+    <!-- Madrid -->
     <string name="madrid">Madrid</string>
     <string name="prado">Múseo del Prado</string>
-    <string name="pradoDesc">The Museo del Prado is the most important museum in Madrid and the most visited in Spain, as it currently houses the largest collection of Spanish paintings in the world. Located on Paseo de Prado, it is one of the best art galleries in the world and accommodates masterpieces of Spanish, Italian, French, Flemish and Dutch painting, among others.</string>
+    <string name="pradoDesc">El Museo del Prado es el museo más importante de Madrid y el más visitado de España, ya que alberga la mayor colección de pintura española del mundo. Situado en el Paseo del Prado, es una de las mejores pinacotecas del mundo y acoge obras maestras de la pintura española, italiana, francesa, flamenca y holandesa, entre otras.</string>
+    <string name="parqueAtracciones">Parque de Atracciones Madrid</string>
+    <string name="parqueAtraccionesDesc">El Parque de Atracciones de Madrid es un parque de atracciones situado en Madrid, en la Comunidad de Madrid, en España, concretamente en la zona de Batán de la Casa de Campo.
+
+Cuenta con dos puertas de entrada: una por Zona Tranquilidad y otra por Nickelodeon Land (próxima a la estación de metro de Batán). Al parque se puede acceder en coche, aunque también está comunicado con el transporte público por la estación de Batán del Metro y por las líneas 33, 55 y 65 de la EMT.
+
+El parque cuenta con más de 1,2 millones de visitantes, posicionándose como el segundo parque más visitado de Madrid.</string>
+    <string name="caixaForum">CaixaForum</string>
+    <string name="caixaForumDesc">
+        CaixaForum Madrid es un centro sociocultural propio del siglo XXI inaugurado en 2008 que abre sus puertas al arte antiguo, moderno y contemporáneo, a los festivales de música y poesía, al arte multimedia, a los debates de actualidad, a las jornadas sociales y a los talleres familiares y educativos.
+    </string>
+    <string name="urbanPlanet">Urban Planet</string>
+    <string name="urbanPlanetDesc">
+        Urban Planet somos la cadena líder de trampoline parks en España, con parques de camas elásticas indoor distribuidos por toda España.
+
+Fundada en el año 2015, se ha convertido en la propuesta de ocio favorita para muchas familias, el lugar ideal para divertirse mientras practican deporte. Y, también, en el mejor sitio para celebrar los cumpleaños infantiles y juveniles.
+    </string>
+    <string name="numa">Numa</string>
+    <string name="numaDesc">
+        Numa Pompilio es una sofisticada joya del Grupo El Paraguas situada en el barrio de Salamanca, que reinterpreta la cocina italiana tradicional bajo una óptica de lujo barroco y teatralidad. Su enfoque se centra en ofrecer una experiencia multisensorial donde la gastronomía —protagonizada por pastas frescas artesanales y platos terminados en mesa, como su icónica rueda de queso— se fusiona con una atmósfera romántica y recargada inspirada en la Roma antigua, destacando especialmente su exuberante jardín interior que lo consolida como un destino exclusivo tanto culinario como social.
+    </string>
+    <string name="cerveceriaLaAvenida">Cerveceria La Avenida</string>
+    <string name="cerveceriaLaAvenidaDesc">Cerveceria La Avenida, es una cerveceria situada en el barrio de Vallecas en la Avenida Pablo Neruda, donde ofrecen un cubo de 15 botellines de cerveza con ración y pincho.
+    Increible para comer y agarrarsela fuertemente</string>
+    <string name="fabrik">Fabrik</string>
+    <string name="fabrikDesc">Fabrik es una de las discotecas más famosas y grandes de España, reconocida a nivel mundial en la escena de la música electrónica. Ubicada en las afueras de Madrid (en la localidad de Humanes), es un templo del clubbing con capacidad para miles de personas.</string>
+    <string name="palacioHielo">Palacio de Hielo</string>
+    <string name="palacioHieloDesc">
+        La Pista de Hielo de Madrid está ubicada en Madrid capital, en el Centro Comercial Palacio de Hielo. Está situada en la Calle Silvano 77 y su parada de metro es Canillas (Línea 4). Cuenta además con un amplísimo parking subterráneo. Es una de las cinco pistas de tamaño olímpico (60 x 30 metros, equivalente a 1.800 m2) existentes en España, sobre un total de 14 pistas de hielo permanentes. La pista se inauguró en 2003, y desde entonces miles de patinadores han disfrutado de sus espectaculares instalaciones.
+    </string>
+    <string name="palacioReal">Palacio Real Madrid</string>
+    <string name="palacioRealDesc">El Palacio Real de Madrid es uno de los más hermosos y mejor conservados de Europa. Sus más de 135.000 metros cuadrados han sido testigos de siglos de la historia de España. Es una de las pocas residencias oficiales de Jefes de Estado que está abierta al público. Cerca de 1,5 millones de visitantes vienen cada año a descubrir sus rincones, sus obras de arte y sus tesoros únicos en el mundo.
+</string>
+    <string name="rosiLaLoca">Rosi La Loca</string>
+    <string name="rosiLaLocaDesc">
+        Rosi La Loca es mucho más que un restaurante; es una experiencia inmersiva y teatral situada a pocos pasos de la Puerta del Sol. Se ha convertido en uno de los locales más famosos y virales de Madrid gracias a su propuesta extravagante inspirada en Alicia en el País de las Maravillas.
+    </string>
     <string name="berlin">Berlin</string>
-    <string name="buenosAires">Buenos Aire</string>
+    <string name="brandenburgGate">Puerta de Brandeburgo</string>
+    <string name="brandenburgGateDesc">La Puerta de Brandeburgo es un monumento neoclásico del siglo XVIII en Berlín, construido por orden del rey prusiano Federico Guillermo II tras el éxito de la restauración del orden durante la Revolución de Batavia.</string>
+    <string name="museumIsland">Isla de los Museos</string>
+    <string name="museumIslandDesc">La Isla de los Museos es un complejo museístico en la parte norte de la Isla del Spree, en el corazón histórico de Berlín. Es uno de los lugares más visitados de la capital alemana y uno de los sitios de museos más importantes de Europa.</string>
+    <string name="tiergarten">Tiergarten</string>
+    <string name="tiergartenDesc">El Tiergarten es el parque urbano más popular de Berlín, ubicado completamente en el distrito del mismo nombre. El parque tiene 210 hectáreas y se encuentra entre los jardines urbanos más grandes de Alemania.</string>
+    <string name="olympiastadion">Estadio Olímpico de Berlín</string>
+    <string name="olympiastadionDesc">El Estadio Olímpico de Berlín es un estadio deportivo en el Parque Olímpico de Berlín, Alemania. Fue construido originalmente por Werner March para los Juegos Olímpicos de Verano de 1936.</string>
+    <string name="hofbraeuBerlin">Hofbräu Wirtshaus Berlín</string>
+    <string name="hofbraeuBerlinDesc">Una gran cervecería que sirve comida y cerveza tradicional bávara en un ambiente animado, trayendo un pedazo de Múnich a Berlín.</string>
+    <string name="eastSideGallery">East Side Gallery</string>
+    <string name="eastSideGalleryDesc">La East Side Gallery es una galería de arte al aire libre en Berlín. Consiste en una serie de murales pintados directamente sobre un remanente de 1316 m de largo del Muro de Berlín.</string>
+    <string name="checkpointCharlie">Checkpoint Charlie</string>
+    <string name="checkpointCharlieDesc">Checkpoint Charlie fue el punto de cruce más conocido entre Berlín Este y Berlín Oeste durante la Guerra Fría.</string>
+    <string name="alexanderplatz">Alexanderplatz</string>
+    <string name="alexanderplatzDesc">Alexanderplatz es una gran plaza pública y centro de transporte en el distrito central de Mitte en Berlín.</string>
+    <string name="berlinerDom">Catedral de Berlín</string>
+    <string name="berlinerDomDesc">La Catedral de Berlín es la iglesia protestante más importante de Berlín y una de las principales atracciones de la ciudad.</string>
+    <string name="potsdamerPlatz">Potsdamer Platz</string>
+    <string name="potsdamerPlatzDesc">Potsdamer Platz es una importante plaza pública e intersección de tráfico en el centro de Berlín, conocida por su arquitectura moderna.</string>
+    <string name="buenosAires">Buenos Aires</string>
+    <string name="teatroColon">Teatro Colón</string>
+    <string name="teatroColonDesc">El Teatro Colón es el principal teatro de ópera de Buenos Aires, Argentina. Es considerado uno de los diez mejores teatros de ópera del mundo por National Geographic y acústicamente se considera entre los cinco mejores lugares de conciertos del mundo.</string>
+    <string name="obelisco">Obelisco de Buenos Aires</string>
+    <string name="obeliscoDesc">El Obelisco de Buenos Aires es un monumento histórico nacional e ícono de Buenos Aires. Ubicado en la Plaza de la República en la intersección de las avenidas Corrientes y 9 de Julio, fue erigido en 1936 para conmemorar el cuarto centenario de la primera fundación de la ciudad.</string>
+    <string name="caminito">Caminito</string>
+    <string name="caminitoDesc">Caminito es un museo callejero y un callejón tradicional, ubicado en La Boca, un barrio de Buenos Aires, Argentina. El lugar adquirió importancia cultural porque inspiró la música del famoso tango "Caminito".</string>
+    <string name="laBombonera">La Bombonera</string>
+    <string name="laBomboneraDesc">El Estadio Alberto J. Armando, popularmente conocido como La Bombonera, es un estadio de fútbol en La Boca, Buenos Aires, Argentina. Es el estadio local de Boca Juniors.</string>
+    <string name="donJulio">Don Julio</string>
+    <string name="donJulioDesc">Una reconocida parrilla en Palermo, Buenos Aires, famosa por su carne de res alimentada con pasto de alta calidad y su extensa lista de vinos.</string>
+    <string name="puertoMadero">Puerto Madero</string>
+    <string name="puertoMaderoDesc">Puerto Madero es un barrio renovado frente al río, conocido por sus rascacielos, restaurantes de lujo y el Puente de la Mujer.</string>
+    <string name="jardinJapones">Jardín Japonés</string>
+    <string name="jardinJaponesDesc">El Jardín Japonés de Buenos Aires es uno de los jardines de estilo japonés más grandes fuera de Japón, ofreciendo un paisaje tranquilo y cultural.</string>
+    <string name="cementerioRecoleta">Cementerio de la Recoleta</string>
+    <string name="cementerioRecoletaDesc">El Cementerio de la Recoleta es famoso por sus estatuas y mausoleos, y es el lugar de descanso de muchas figuras notables, incluida Eva Perón.</string>
+    <string name="plazaDeMayo">Plaza de Mayo</string>
+    <string name="plazaDeMayoDesc">La Plaza de Mayo es la plaza principal del centro de Buenos Aires, escenario de importantes acontecimientos políticos de la historia argentina.</string>
+    <string name="mercadoSanTelmo">Mercado de San Telmo</string>
+    <string name="mercadoSanTelmoDesc">El Mercado de San Telmo es un gran mercado interior con puestos de antigüedades, productos frescos y comida callejera variada.</string>
     <string name="auckland">Auckland</string>
+    <string name="skyTower">Sky Tower</string>
+    <string name="skyTowerDesc">La Sky Tower es una torre de telecomunicaciones y observación en Auckland, Nueva Zelanda. Ubicada en la esquina de las calles Victoria y Federal en el CBD de la ciudad, tiene 328 metros de altura.</string>
+    <string name="aucklandMuseum">Museo de Auckland</string>
+    <string name="aucklandMuseumDesc">El Museo de Auckland Tāmaki Paenga Hira es uno de los museos y monumentos de guerra más importantes de Nueva Zelanda. Sus colecciones se concentran en la historia de Nueva Zelanda, la historia natural y la historia militar.</string>
+    <string name="mountEden">Monte Eden</string>
+    <string name="mountEdenDesc">Maungawhau / Monte Eden es un cono de escoria en el suburbio de Mount Eden en Auckland, Nueva Zelanda. Es el punto natural más alto de Auckland.</string>
+    <string name="edenPark">Eden Park</string>
+    <string name="edenParkDesc">Eden Park es el estadio deportivo más grande de Nueva Zelanda. Ubicado en el centro de Auckland, la ciudad más grande de Nueva Zelanda, se encuentra a tres kilómetros al suroeste del CBD, en el límite entre los suburbios de Mount Eden y Kingsland.</string>
+    <string name="theGrove">The Grove</string>
+    <string name="theGroveDesc">Un restaurante de alta cocina en Auckland que ofrece comida moderna de Nueva Zelanda con un toque francés, conocido por sus menús de degustación.</string>
+    <string name="waihekeIsland">Isla Waiheke</string>
+    <string name="waihekeIslandDesc">La isla Waiheke es conocida por sus viñedos, olivares y playas. Es un destino popular para excursiones de un día desde Auckland.</string>
+    <string name="viaductHarbour">Viaduct Harbour</string>
+    <string name="viaductHarbourDesc">Viaduct Harbour es una zona animada frente al mar con restaurantes y bares de lujo, y es un lugar popular para la vida nocturna.</string>
+    <string name="aucklandArtGallery">Galería de Arte de Auckland</string>
+    <string name="aucklandArtGalleryDesc">La Galería de Arte de Auckland Toi o Tāmaki es la principal galería pública de Auckland y tiene la colección más extensa de arte nacional e internacional de Nueva Zelanda.</string>
+    <string name="kellyTarltons">Kelly Tarlton\'s Sea Life Aquarium</string>
+    <string name="kellyTarltonsDesc">Un acuario público que cuenta con un túnel de tiburones y una colonia de pingüinos antárticos.</string>
+    <string name="oneTreeHill">One Tree Hill</string>
+    <string name="oneTreeHillDesc">One Tree Hill, o Maungakiekie, es un pico volcánico de 182 metros de altura y un importante lugar conmemorativo tanto para maoríes como para europeos.</string>
 </resources>
