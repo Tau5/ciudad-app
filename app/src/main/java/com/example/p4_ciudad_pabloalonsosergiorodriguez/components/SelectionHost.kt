@@ -1,11 +1,19 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -32,38 +40,44 @@ fun SelectionHost(
 ) {
     val coroutineScope = rememberCoroutineScope()
     var categoryList = Category.entries.map{Pair(stringResource(it.nombre), it)}
-    NavHost(
-        navController,
-        startDestination = "CategorySelection",
-        modifier = modifier
+    ElevatedCard(modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 18.dp),
+        shape = RoundedCornerShape(16.dp)
     ) {
-        composable(route = SelectionScreen.CategorySelection.name) {
-            coroutineScope.launch {
-                viewModel.focusCity();
-            }
-            SelectionList(
-                onSelect = {
-                    viewModel.setCategory(it)
-                    navController.navigate(SelectionScreen.PlaceSelection.name)
-                },
-                options = categoryList,
-                modifier = modifier
-            )
-        }
-        composable(route = SelectionScreen.PlaceSelection.name) {
-            viewModel.selectedCity.value?.let { city: City ->
-                val placeList = viewModel.getPlacesList()
+        NavHost(
+            navController,
+            startDestination = "CategorySelection",
+            modifier = modifier.fillMaxWidth().fillMaxHeight()
+        ) {
+            composable(route = SelectionScreen.CategorySelection.name) {
+                LaunchedEffect(navController.currentBackStackEntry)  {
+                    coroutineScope.launch {
+                        viewModel.focusCity();
+                    }
+                }
                 SelectionList(
                     onSelect = {
-                        coroutineScope.launch {
-                            viewModel.setPlace(it)
-                        }
+                        viewModel.setCategory(it)
+                        navController.navigate(SelectionScreen.PlaceSelection.name)
                     },
-                    options = placeList,
+                    options = categoryList,
                     modifier = modifier
                 )
             }
+            composable(route = SelectionScreen.PlaceSelection.name) {
+                viewModel.selectedCity.value?.let { city: City ->
+                    val placeList = viewModel.getPlacesList()
+                    SelectionList(
+                        onSelect = {
+                            coroutineScope.launch {
+                                viewModel.setPlace(it)
+                            }
+                        },
+                        options = placeList,
+                        modifier = modifier
+                    )
+                }
 
+            }
         }
     }
 }
