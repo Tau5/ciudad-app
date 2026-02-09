@@ -1,8 +1,10 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
@@ -44,7 +46,8 @@ fun SelectionHost(
                     viewModel.setCategory(it)
                     navController.navigate(SelectionScreen.PlaceSelection.name)
                 },
-                options = categoryList
+                options = categoryList,
+                modifier = modifier
             )
         }
         composable(route = SelectionScreen.PlaceSelection.name) {
@@ -56,7 +59,8 @@ fun SelectionHost(
                             viewModel.setPlace(it)
                         }
                     },
-                    options = placeList
+                    options = placeList,
+                    modifier = modifier
                 )
             }
 
