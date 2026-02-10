@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -40,7 +41,11 @@ fun MainHost(
             SelectionList(
                 onSelect = {
                     mainViewModel.setCity(it)
-                    navController.navigate(MainHostScreen.Main.name)
+                    navController.navigate(MainHostScreen.Main.name) {
+                        popUpTo(MainHostScreen.SelectCity.name) {
+                            inclusive = true
+                        }
+                    }
                 },
                 options = cityList,
                 modifier = modifier

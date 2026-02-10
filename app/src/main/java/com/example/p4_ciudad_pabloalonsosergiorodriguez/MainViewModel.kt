@@ -1,11 +1,13 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez
 
 import android.graphics.Camera
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -37,17 +39,19 @@ class MainViewModel : ViewModel() {
         CameraPosition()
     ))
 
+    val mapPadding = PaddingValues(top = 300.dp);
+
     var nextScreen: MainHostScreen? = null
 
     fun setCity(city: City) {
         selectedCity.value = city
-        mapCameraState.value.position = CameraPosition(target = city.position, zoom = 8.0)
+        mapCameraState.value.position = CameraPosition(target = city.position, zoom = 8.0, padding = mapPadding)
     }
 
     suspend fun setPlace(place: Place) {
         selectedPlace.value = place
         mapCameraState.value.animateTo(
-            finalPosition = CameraPosition(target = place.position, zoom = 18.0, tilt = 30.0),
+            finalPosition = CameraPosition(target = place.position, zoom = 18.0, tilt = 30.0, padding = mapPadding),
             duration = 1000.milliseconds
         )
     }
@@ -55,7 +59,7 @@ class MainViewModel : ViewModel() {
     suspend fun focusCity() {
         selectedCity.value?.let {
             mapCameraState.value.animateTo(
-                finalPosition = CameraPosition(target = it.position, zoom = 8.0),
+                finalPosition = CameraPosition(target = it.position, zoom = 8.0, padding = mapPadding),
                 duration = 1000.milliseconds
             )
         }
@@ -73,6 +77,13 @@ class MainViewModel : ViewModel() {
                 .map{ Pair(stringResource(it.name), it) }
         } ?: run {
             listOf()
+        }
+    }
+
+    suspend fun viewRandomPlace() {
+        selectedCity.value?.let { city ->
+            val place = city.places.random()
+            setPlace(place)
         }
     }
 
