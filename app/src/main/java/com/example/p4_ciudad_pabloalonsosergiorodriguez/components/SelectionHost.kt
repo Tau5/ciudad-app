@@ -48,6 +48,7 @@ fun SelectionHost(
         ) {
             composable(route = SelectionScreen.CategorySelection.name) {
                 LaunchedEffect(navController.currentBackStackEntry)  {
+                    viewModel.setExpandedView(false)
                     coroutineScope.launch {
                         viewModel.focusCity();
                     }
@@ -62,19 +63,33 @@ fun SelectionHost(
                 )
             }
             composable(route = SelectionScreen.PlaceSelection.name) {
+                LaunchedEffect(navController.currentBackStackEntry) {
+                    viewModel.setExpandedView(false)
+                }
                 viewModel.selectedCity.value?.let { city: City ->
                     val placeList = viewModel.getPlacesList()
                     SelectionList(
                         onSelect = {
                             coroutineScope.launch {
                                 viewModel.setPlace(it)
+                                navController.navigate(SelectionScreen.PlaceView.name)
                             }
                         },
                         options = placeList,
                         modifier = modifier
                     )
                 }
-
+            }
+            composable(route = SelectionScreen.PlaceView.name) {
+                LaunchedEffect(navController.currentBackStackEntry) {
+                    viewModel.setExpandedView(true)
+                }
+                viewModel.selectedPlace.value?.let { place ->
+                    PlaceView(
+                        place = place,
+                        modifier = modifier
+                    )
+                }
             }
         }
     }

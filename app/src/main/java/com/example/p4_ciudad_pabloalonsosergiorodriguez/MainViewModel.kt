@@ -39,19 +39,20 @@ class MainViewModel : ViewModel() {
         CameraPosition()
     ))
 
-    val mapPadding = PaddingValues(top = 300.dp);
+    var mapPadding: MutableState<PaddingValues> = mutableStateOf(PaddingValues(top = 300.dp))
+        private set
 
     var nextScreen: MainHostScreen? = null
 
     fun setCity(city: City) {
         selectedCity.value = city
-        mapCameraState.value.position = CameraPosition(target = city.position, zoom = 8.0, padding = mapPadding)
+        mapCameraState.value.position = CameraPosition(target = city.position, zoom = 8.0, padding = mapPadding.value)
     }
 
     suspend fun setPlace(place: Place) {
         selectedPlace.value = place
         mapCameraState.value.animateTo(
-            finalPosition = CameraPosition(target = place.position, zoom = 18.0, tilt = 30.0, padding = mapPadding),
+            finalPosition = CameraPosition(target = place.position, zoom = 18.0, tilt = 30.0, padding = mapPadding.value),
             duration = 1000.milliseconds
         )
     }
@@ -59,7 +60,7 @@ class MainViewModel : ViewModel() {
     suspend fun focusCity() {
         selectedCity.value?.let {
             mapCameraState.value.animateTo(
-                finalPosition = CameraPosition(target = it.position, zoom = 8.0, padding = mapPadding),
+                finalPosition = CameraPosition(target = it.position, zoom = 8.0, padding = mapPadding.value),
                 duration = 1000.milliseconds
             )
         }
@@ -67,6 +68,24 @@ class MainViewModel : ViewModel() {
 
     fun setCategory(category: Category) {
         selectedCategory.value = category
+    }
+
+    fun setExpandedView(expanded: Boolean) {
+        mapPadding.value = if (expanded) {
+            PaddingValues(top = 500.dp) // Increase padding to show more info
+        } else {
+            PaddingValues(top = 300.dp) // Default padding
+        }
+        // Re-center camera with new padding if a place is selected
+        selectedPlace.value?.let {
+             mapCameraState.value.position = CameraPosition(
+                 target = it.position,
+                 zoom = mapCameraState.value.position.zoom,
+                 tilt = mapCameraState.value.position.tilt,
+                 bearing = mapCameraState.value.position.bearing,
+                 padding = mapPadding.value
+             )
+        }
     }
 
     @Composable
