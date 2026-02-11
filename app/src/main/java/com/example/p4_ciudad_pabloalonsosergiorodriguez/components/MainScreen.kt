@@ -71,6 +71,8 @@ fun MainScreen(
                     modifier = Modifier.fillMaxWidth().height(64.dp),
                     onClickRandom = {
                         coroutineScope.launch {
+                            navController.navigate(SelectionScreen.PlaceView.name)
+                            viewModel.setExpandedView(true)
                             viewModel.viewRandomPlace()
                         }
                     }

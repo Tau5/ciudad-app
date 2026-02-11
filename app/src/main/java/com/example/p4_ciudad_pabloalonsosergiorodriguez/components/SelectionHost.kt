@@ -47,9 +47,12 @@ fun SelectionHost(
             modifier = modifier.fillMaxWidth().fillMaxHeight()
         ) {
             composable(route = SelectionScreen.CategorySelection.name) {
-                LaunchedEffect(navController.currentBackStackEntry)  {
-                    coroutineScope.launch {
-                        viewModel.focusCity();
+                LaunchedEffect(navController.currentBackStackEntry) {
+                    if (navController.currentBackStackEntry?.destination?.route == SelectionScreen.CategorySelection.name) {
+                        coroutineScope.launch {
+                            viewModel.setExpandedView(false)
+                            viewModel.focusCity();
+                        }
                     }
                 }
                 SelectionList(
