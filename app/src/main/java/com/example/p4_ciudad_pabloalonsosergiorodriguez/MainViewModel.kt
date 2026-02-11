@@ -39,6 +39,9 @@ class MainViewModel : ViewModel() {
         CameraPosition()
     ))
 
+    var searchQueryState: MutableState<String> = mutableStateOf("")
+    var searchBarExpanded = mutableStateOf(false)
+
     val mapPadding = PaddingValues(top = 300.dp);
 
     var nextScreen: MainHostScreen? = null
