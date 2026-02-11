@@ -42,6 +42,8 @@ class MainViewModel : ViewModel() {
     var mapPadding: MutableState<PaddingValues> = mutableStateOf(PaddingValues(top = 300.dp))
         private set
 
+    var searchQueryState: MutableState<String> = mutableStateOf("")
+
     var nextScreen: MainHostScreen? = null
 
     var isCityFocused = true;

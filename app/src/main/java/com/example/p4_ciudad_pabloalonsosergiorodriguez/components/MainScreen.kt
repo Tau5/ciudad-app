@@ -1,5 +1,6 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -68,7 +70,11 @@ fun MainScreen(
                 PlaceSearchBar(
                     onSearch = {},
                     searchResults = listOf(),
-                    modifier = Modifier.fillMaxWidth().height(64.dp),
+                    modifier = when (viewModel.searchBarExpanded.value) {
+                        true -> Modifier.fillMaxWidth().weight(1f)
+                        false -> Modifier.fillMaxWidth().height(100.dp)
+                    },
+                    viewModel = viewModel,
                     onClickRandom = {
                         coroutineScope.launch {
                             navController.navigate(SelectionScreen.PlaceView.name) {
@@ -77,13 +83,21 @@ fun MainScreen(
                             viewModel.setExpandedView(true)
                             viewModel.viewRandomPlace()
                         }
+                    },
+                    onClickResult = {
+                        coroutineScope.launch {
+                            viewModel.setPlace(it)
+                        }
                     }
                 )
                 Spacer(Modifier.height(8.dp))
-                SelectionHost(
-                    navController,
-                    viewModel = viewModel,
-                )
+                AnimatedVisibility(!viewModel.searchBarExpanded.value, modifier=Modifier.weight(2.5f)) {
+                    SelectionHost(
+                        navController,
+                        viewModel = viewModel,
+                        modifier = Modifier
+                    )
+                }
             }
 
         }
