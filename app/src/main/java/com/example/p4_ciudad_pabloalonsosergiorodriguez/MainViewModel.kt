@@ -70,7 +70,7 @@ class MainViewModel : ViewModel() {
         selectedCategory.value = category
     }
 
-    fun setExpandedView(expanded: Boolean) {
+    suspend fun setExpandedView(expanded: Boolean) {
         mapPadding.value = if (expanded) {
             PaddingValues(top = 500.dp) // Increase padding to show more info
         } else {
@@ -78,13 +78,13 @@ class MainViewModel : ViewModel() {
         }
         // Re-center camera with new padding if a place is selected
         selectedPlace.value?.let {
-             mapCameraState.value.position = CameraPosition(
+             mapCameraState.value.animateTo(finalPosition = CameraPosition(
                  target = it.position,
                  zoom = mapCameraState.value.position.zoom,
                  tilt = mapCameraState.value.position.tilt,
                  bearing = mapCameraState.value.position.bearing,
                  padding = mapPadding.value
-             )
+             ))
         }
     }
 
