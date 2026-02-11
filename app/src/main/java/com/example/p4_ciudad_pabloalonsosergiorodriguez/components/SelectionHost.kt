@@ -47,9 +47,12 @@ fun SelectionHost(
             modifier = modifier.fillMaxWidth().fillMaxHeight()
         ) {
             composable(route = SelectionScreen.CategorySelection.name) {
-                LaunchedEffect(navController.currentBackStackEntry)  {
-                    coroutineScope.launch {
-                        viewModel.focusCity();
+                LaunchedEffect(navController.currentBackStackEntry) {
+                    if (navController.currentBackStackEntry?.destination?.route == SelectionScreen.CategorySelection.name) {
+                        coroutineScope.launch {
+                            viewModel.setExpandedView(false)
+                            viewModel.focusCity();
+                        }
                     }
                 }
                 SelectionList(
@@ -62,11 +65,20 @@ fun SelectionHost(
                 )
             }
             composable(route = SelectionScreen.PlaceSelection.name) {
+                LaunchedEffect(navController.currentBackStackEntry) {
+                    if (navController.currentBackStackEntry?.destination?.route == SelectionScreen.PlaceSelection.name)
+                    coroutineScope.launch {
+                        viewModel.setExpandedView(false)
+                        viewModel.focusCity();
+                    }
+                }
                 viewModel.selectedCity.value?.let { city: City ->
                     val placeList = viewModel.getPlacesList()
                     SelectionList(
                         onSelect = {
                             coroutineScope.launch {
+                                navController.navigate(SelectionScreen.PlaceView.name)
+                                viewModel.setExpandedView(true)
                                 viewModel.setPlace(it)
                             }
                         },
@@ -74,7 +86,19 @@ fun SelectionHost(
                         modifier = modifier
                     )
                 }
-
+            }
+            composable(route = SelectionScreen.PlaceView.name) {
+                //LaunchedEffect(navController.currentBackStackEntry) {
+                //    coroutineScope.launch {
+                //        viewModel.setExpandedView(true)
+                //    }
+                //}
+                viewModel.selectedPlace.value?.let { place ->
+                    PlaceView(
+                        place = place,
+                        modifier = modifier
+                    )
+                }
             }
         }
     }

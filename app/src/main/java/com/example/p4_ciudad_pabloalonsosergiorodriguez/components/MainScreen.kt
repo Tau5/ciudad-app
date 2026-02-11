@@ -61,7 +61,7 @@ fun MainScreen(
                     top.linkTo(parent.top, margin = 8.dp)
                     start.linkTo(parent.start, margin = 8.dp)
                     end.linkTo(parent.end, margin = 8.dp)
-                    height = Dimension.value(viewModel.mapPadding.calculateTopPadding())
+                    height = Dimension.value(viewModel.mapPadding.value.calculateTopPadding())
                     width = Dimension.fillToConstraints
                 }
             ) {
@@ -71,6 +71,10 @@ fun MainScreen(
                     modifier = Modifier.fillMaxWidth().height(64.dp),
                     onClickRandom = {
                         coroutineScope.launch {
+                            navController.navigate(SelectionScreen.PlaceView.name) {
+                                popUpTo(SelectionScreen.CategorySelection.name)
+                            }
+                            viewModel.setExpandedView(true)
                             viewModel.viewRandomPlace()
                         }
                     }
