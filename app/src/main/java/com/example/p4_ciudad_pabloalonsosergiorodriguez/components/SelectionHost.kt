@@ -48,7 +48,6 @@ fun SelectionHost(
         ) {
             composable(route = SelectionScreen.CategorySelection.name) {
                 LaunchedEffect(navController.currentBackStackEntry)  {
-                    viewModel.setExpandedView(false)
                     coroutineScope.launch {
                         viewModel.focusCity();
                     }
@@ -64,15 +63,20 @@ fun SelectionHost(
             }
             composable(route = SelectionScreen.PlaceSelection.name) {
                 LaunchedEffect(navController.currentBackStackEntry) {
-                    viewModel.setExpandedView(false)
+                    if (navController.currentBackStackEntry?.destination?.route == SelectionScreen.PlaceSelection.name)
+                    coroutineScope.launch {
+                        viewModel.setExpandedView(false)
+                        viewModel.focusCity();
+                    }
                 }
                 viewModel.selectedCity.value?.let { city: City ->
                     val placeList = viewModel.getPlacesList()
                     SelectionList(
                         onSelect = {
                             coroutineScope.launch {
-                                viewModel.setPlace(it)
                                 navController.navigate(SelectionScreen.PlaceView.name)
+                                viewModel.setExpandedView(true)
+                                viewModel.setPlace(it)
                             }
                         },
                         options = placeList,
@@ -81,9 +85,11 @@ fun SelectionHost(
                 }
             }
             composable(route = SelectionScreen.PlaceView.name) {
-                LaunchedEffect(navController.currentBackStackEntry) {
-                    viewModel.setExpandedView(true)
-                }
+                //LaunchedEffect(navController.currentBackStackEntry) {
+                //    coroutineScope.launch {
+                //        viewModel.setExpandedView(true)
+                //    }
+                //}
                 viewModel.selectedPlace.value?.let { place ->
                     PlaceView(
                         place = place,
