@@ -51,6 +51,7 @@ fun SelectionHost(
                 LaunchedEffect(navController.currentBackStackEntry) {
                     if (navController.currentBackStackEntry?.destination?.route == SelectionScreen.CategorySelection.name) {
                         coroutineScope.launch {
+                            viewModel.cancelSearch()
                             viewModel.setExpandedView(false)
                             viewModel.focusCity();
                         }
