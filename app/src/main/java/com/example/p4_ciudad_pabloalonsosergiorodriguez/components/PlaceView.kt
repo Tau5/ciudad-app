@@ -76,9 +76,12 @@ fun PlaceView(
                 Text(text = "Visitar Sitio Web")
             }
 
+            val nameCOMpose = stringResource(place.name)
             Button(
                 onClick = {
-                    // TODO: Implementar funcionalidad para ver en Maps
+                    val geoUri: String = "geo:${place.position.latitude},${place.position.longitude}?q=${place.position.latitude},${place.position.longitude}"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
+                    context.startActivity(intent)
                 },
                 modifier = Modifier.weight(1f)
             ) {
