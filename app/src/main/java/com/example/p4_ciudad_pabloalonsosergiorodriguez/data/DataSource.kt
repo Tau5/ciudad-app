@@ -24,7 +24,7 @@ data object DataSource {
                 latitude = 40.411289
             ),
             urlWeb = "https://www.parquedeatracciones.es/",
-            img = R.drawable.c870x524_338597640
+            img = R.drawable._fb3faec_d6cf_4124_9d0c_e9adce46f56c_632918796
         ),
         Place(
             category = Category.Cultura,
@@ -46,7 +46,7 @@ data object DataSource {
                 latitude = 40.4444008
             ),
             urlWeb = "https://urbanplanetjump.es/parques/las-rejas/",
-            img = R.drawable.shutterstock_1676609173_scaled_3873999629
+            img = R.drawable.c870x524_338597640
         ),
         Place(
             category = Category.Restauracion,
@@ -68,7 +68,7 @@ data object DataSource {
                 latitude = 40.3848
             ),
             urlWeb = "http://laavenidavk.es/",
-            img = R.drawable._fb3faec_d6cf_4124_9d0c_e9adce46f56c_632918796
+            img = R.drawable.shutterstock_1676609173_scaled_3873999629
         ),
         Place(
             category = Category.Ocio,
@@ -101,7 +101,7 @@ data object DataSource {
                 latitude = 40.4179
             ),
             urlWeb = "https://www.patrimonionacional.es/visita/palacio-real-de-madrid",
-            img = R.drawable.g25334_fr_01_wqxga_1330713729
+            img = R.drawable.palacio_real_cabecera_fachada_principal_
         ),
         Place(
             category = Category.Restauracion,
