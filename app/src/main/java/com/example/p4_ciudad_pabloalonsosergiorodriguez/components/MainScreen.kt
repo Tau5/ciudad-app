@@ -1,12 +1,18 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
+import android.annotation.SuppressLint
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +38,8 @@ fun MainScreen(
 ) {
     val cameraState = viewModel.mapCameraState
     val coroutineScope = rememberCoroutineScope()
+    @SuppressLint("RestrictedApi")
+    var backstack = navController.currentBackStack.collectAsState()
     ConstraintLayout(modifier = modifier.fillMaxWidth()) {
         val (host, map) = createRefs()
         MaplibreMap(
@@ -83,11 +91,16 @@ fun MainScreen(
             )
             Spacer(Modifier.height(8.dp))
             //AnimatedVisibility(!viewModel.isSearching.value, modifier=Modifier.weight(2.5f)) {
-                SelectionHost(
-                    navController,
-                    viewModel = viewModel,
-                    modifier = Modifier
-                )
+            ElevatedCard(elevation = CardDefaults.cardElevation(defaultElevation = 18.dp), modifier = Modifier.animateContentSize()) {
+                Row() {
+                    FunVerticalThing(viewModel, backstack.value, modifier = Modifier.animateContentSize())
+                    SelectionHost(
+                        navController,
+                        viewModel = viewModel,
+                        modifier = Modifier.animateContentSize()
+                    )
+                }
+            }
             //}
         }
     }

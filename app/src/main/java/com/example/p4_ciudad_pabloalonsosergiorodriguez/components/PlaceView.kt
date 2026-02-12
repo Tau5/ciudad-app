@@ -38,14 +38,13 @@ fun PlaceView(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(16.dp)
+            .padding(top = 4.dp, end = 4.dp, bottom = 4.dp)
     ) {
-        Text(
-            text = stringResource(id = place.name),
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
+        //Text(
+        //    text = stringResource(id = place.name),
+        //    style = MaterialTheme.typography.headlineMedium,
+        //    modifier = Modifier.padding(bottom = 8.dp)
+        //)
         Image(
             painter = painterResource(id = place.img),
             contentDescription = stringResource(id = place.name),

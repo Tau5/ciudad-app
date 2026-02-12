@@ -2,18 +2,25 @@ package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
@@ -24,6 +31,7 @@ import com.example.p4_ciudad_pabloalonsosergiorodriguez.data.Category
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.data.City
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.data.DataSource
 import kotlinx.coroutines.launch
+import java.time.format.TextStyle
 
 enum class SelectionScreen {
     CategorySelection,
@@ -41,7 +49,6 @@ fun SelectionHost(
 ) {
     val coroutineScope = rememberCoroutineScope()
     var categoryList = Category.entries.map{Pair(stringResource(it.nombre), it)}
-    ElevatedCard(modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 18.dp)) {
         NavHost(
             navController,
             startDestination = "CategorySelection",
@@ -101,7 +108,7 @@ fun SelectionHost(
                         modifier = modifier
                     )
                 }
-            }
         }
     }
 }
+
