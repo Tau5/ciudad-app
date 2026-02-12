@@ -62,14 +62,14 @@ class MainViewModel : ViewModel() {
 
     fun setCity(city: City) {
         selectedCity.value = city
-        mapCameraState.value.position = CameraPosition(target = city.position, zoom = 8.0, padding = getMapPadding())
+        mapCameraState.value.position = CameraPosition(target = city.position, zoom = 10.0, padding = getMapPadding())
     }
 
     suspend fun setPlace(place: Place) {
         isCityFocused = false
         selectedPlace.value = place
         mapCameraState.value.animateTo(
-            finalPosition = CameraPosition(target = place.position, zoom = 18.0, tilt = 30.0, padding = getMapPadding()),
+            finalPosition = CameraPosition(target = place.position, zoom = 17.0, tilt = 30.0, padding = getMapPadding()),
             duration = 1000.milliseconds
         )
     }
@@ -78,7 +78,7 @@ class MainViewModel : ViewModel() {
         if (!isCityFocused) {
             selectedCity.value?.let {
                 mapCameraState.value.animateTo(
-                    finalPosition = CameraPosition(target = it.position, zoom = 8.0, padding = getMapPadding()),
+                    finalPosition = CameraPosition(target = it.position, zoom = 10.0, padding = getMapPadding()),
                     duration = 1000.milliseconds
                 )
             }
