@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.CardDefaults
@@ -43,6 +45,7 @@ fun PlaceSearchBar(
     onSearch: (String) -> Unit,
     onCancel: (Boolean) -> Unit,
     onClickRandom: () -> Unit,
+    onClickChangeCity: () -> Unit,
     viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
@@ -82,6 +85,9 @@ fun PlaceSearchBar(
                     }
                 }
             )
+            IconButton(onClick = onClickChangeCity, modifier = Modifier.fillMaxHeight()) {
+                Icon(imageVector = Icons.Filled.Place, contentDescription = null, modifier = Modifier.fillMaxHeight())
+            }
             IconButton(onClick = onClickRandom, modifier = Modifier.fillMaxHeight()) {
                 Icon(imageVector = Icons.Filled.Star, contentDescription = null, modifier = Modifier.fillMaxHeight())
             }
@@ -97,7 +103,8 @@ fun WhyStyleNoWorky() {
         onCancel = {},
         onClickRandom = {},
         viewModel = viewModel(),
-        modifier = Modifier.fillMaxWidth().height(70.dp)
+        modifier = Modifier.fillMaxWidth().height(70.dp),
+        onClickChangeCity = {}
     )
 }
 
@@ -131,6 +138,7 @@ fun WhyStyleNoWorkyReal() {
                 onCancel = {},
                 onClickRandom = {},
                 viewModel = viewModel(),
+                onClickChangeCity = {},
                 modifier = Modifier.fillMaxWidth().height(70.dp)
             )
         }

@@ -1,7 +1,9 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,13 +12,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
@@ -24,7 +27,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.MainViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.maplibre.compose.camera.CameraPosition
 import org.maplibre.compose.map.MapOptions
 import org.maplibre.compose.map.MaplibreMap
 import org.maplibre.compose.map.OrnamentOptions
@@ -35,25 +40,30 @@ fun MainScreen(
     navController: NavHostController = rememberNavController(),
     viewModel: MainViewModel = viewModel(),
     modifier: Modifier = Modifier,
+    requestViewSelectCity: () -> Unit,
 ) {
     val cameraState = viewModel.mapCameraState
     val coroutineScope = rememberCoroutineScope()
+    var shouldHideMap by remember { mutableStateOf(false) }
+
     @SuppressLint("RestrictedApi")
     var backstack = navController.currentBackStack.collectAsState()
     ConstraintLayout(modifier = modifier.fillMaxWidth()) {
         val (host, map) = createRefs()
-        MaplibreMap(
-            baseStyle = BaseStyle.Uri("https://tiles.openfreemap.org/styles/liberty"),
-            modifier = Modifier.constrainAs(map) {
-                top.linkTo(parent.top)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-                bottom.linkTo(parent.bottom)
-                width = Dimension.fillToConstraints
-            },
-            options = MapOptions(ornamentOptions = OrnamentOptions(scaleBarAlignment = Alignment.BottomEnd)),
-            cameraState = cameraState.value
-        )
+        AnimatedVisibility(!shouldHideMap, exit = slideOutVertically(targetOffsetY = { (-1.25 * it).toInt() })) {
+            MaplibreMap(
+                baseStyle = BaseStyle.Uri("https://tiles.openfreemap.org/styles/liberty"),
+                modifier = Modifier.constrainAs(map) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                    width = Dimension.fillToConstraints
+                },
+                options = MapOptions(ornamentOptions = OrnamentOptions(scaleBarAlignment = Alignment.BottomEnd)),
+                cameraState = cameraState.value
+            )
+        }
         Column(
             modifier = Modifier.constrainAs(host) {
                 top.linkTo(parent.top, margin = 8.dp)
@@ -84,6 +94,13 @@ fun MainScreen(
                     }
                 },
                 viewModel = viewModel,
+                onClickChangeCity = {
+                    coroutineScope.launch {
+                        shouldHideMap = true
+                        delay(300)
+                        requestViewSelectCity()
+                    }
+                },
                 modifier = /*when (viewModel.searchBarExpanded.value) {
                     true -> Modifier.fillMaxWidth().weight(1f)
                     false -> Modifier.fillMaxWidth().height(70.dp)

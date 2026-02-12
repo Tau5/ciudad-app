@@ -42,6 +42,8 @@ class MainViewModel : ViewModel() {
 
     var isCityFocused = true;
 
+    var currentMainHostScreen: MutableState<MainHostScreen> = mutableStateOf(MainHostScreen.SelectCity)
+
     fun setCity(city: City) {
         selectedCity.value = city
         mapCameraState.value.position = CameraPosition(target = city.position, zoom = 8.0, padding = mapPadding.value)
