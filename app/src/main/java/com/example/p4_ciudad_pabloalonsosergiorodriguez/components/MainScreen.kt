@@ -1,17 +1,26 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.windowInsetsStartWidth
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,6 +29,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
@@ -29,7 +40,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.MainViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.maplibre.compose.camera.CameraPosition
 import org.maplibre.compose.map.MapOptions
 import org.maplibre.compose.map.MaplibreMap
 import org.maplibre.compose.map.OrnamentOptions
@@ -50,6 +60,12 @@ fun MainScreen(
     var backstack = navController.currentBackStack.collectAsState()
     ConstraintLayout(modifier = modifier.fillMaxWidth()) {
         val (host, map) = createRefs()
+        val config = LocalConfiguration.current
+        val isHorizontal = config.orientation == Configuration.ORIENTATION_LANDSCAPE
+        LaunchedEffect(isHorizontal) {
+            viewModel.isHorizontal.value = isHorizontal
+            viewModel.onOrientationUpdate()
+        }
         AnimatedVisibility(!shouldHideMap, exit = slideOutVertically(targetOffsetY = { (-1.25 * it).toInt() })) {
             MaplibreMap(
                 baseStyle = BaseStyle.Uri("https://tiles.openfreemap.org/styles/liberty"),
@@ -65,13 +81,33 @@ fun MainScreen(
             )
         }
         Column(
-            modifier = Modifier.constrainAs(host) {
-                top.linkTo(parent.top, margin = 8.dp)
-                start.linkTo(parent.start, margin = 8.dp)
-                end.linkTo(parent.end, margin = 8.dp)
-                height = Dimension.value(viewModel.mapPadding.value.calculateTopPadding())
-                width = Dimension.fillToConstraints
-            }
+            modifier = Modifier
+                .constrainAs(host) {
+                    //top.linkTo(parent.top, margin = 8.dp)
+                    //bottom.linkTo(parent.bottom, margin = 8.dp)
+                    //start.linkTo(parent.start, margin = 8.dp)
+                    //end.linkTo(parent.end, margin = 8.dp)
+                    if (isHorizontal) {
+                        width = Dimension.value(viewModel.getMapPadding().calculateStartPadding(LayoutDirection.Rtl))
+                        height = Dimension.fillToConstraints
+                    } else {
+                        height = Dimension.value(viewModel.getMapPadding().calculateTopPadding())
+                        width = Dimension.fillToConstraints
+                    }
+                }
+                .padding(
+                    //if (isHorizontal) {
+                    //    PaddingValues(start = 24.dp, 8.dp, 8.dp, 8.dp)
+                    //} else {
+                    PaddingValues(8.dp)
+                    //}
+                ).let {
+                    if (isHorizontal) {
+                        it.windowInsetsPadding(WindowInsets.displayCutout)
+                    } else {
+                        it
+                    }
+                }
         ) {
             PlaceSearchBar(
                 onSearch = {
@@ -104,7 +140,7 @@ fun MainScreen(
                 modifier = /*when (viewModel.searchBarExpanded.value) {
                     true -> Modifier.fillMaxWidth().weight(1f)
                     false -> Modifier.fillMaxWidth().height(70.dp)
-                }*/ Modifier.fillMaxWidth().height(70.dp)
+                }*/ Modifier.animateContentSize().fillMaxWidth().height(70.dp)
             )
             Spacer(Modifier.height(8.dp))
             //AnimatedVisibility(!viewModel.isSearching.value, modifier=Modifier.weight(2.5f)) {

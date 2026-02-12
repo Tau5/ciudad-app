@@ -5,9 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.components.MainHostScreen
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.data.Category
@@ -32,8 +32,10 @@ class MainViewModel : ViewModel() {
         CameraPosition()
     ))
 
-    var mapPadding: MutableState<PaddingValues> = mutableStateOf(PaddingValues(top = 300.dp))
+    var mapPadding: MutableState<Dp> = mutableStateOf(300.dp)
         private set
+
+    var isHorizontal: MutableState<Boolean> = mutableStateOf(false)
 
     var searchQueryState: MutableState<String> = mutableStateOf("")
     var isSearching = mutableStateOf(false)
@@ -43,17 +45,31 @@ class MainViewModel : ViewModel() {
     var isCityFocused = true;
 
     var currentMainHostScreen: MutableState<MainHostScreen> = mutableStateOf(MainHostScreen.SelectCity)
+    var isExpanded = false;
+
+    fun getMapPadding(): PaddingValues {
+        return if (isHorizontal.value) {
+            PaddingValues(start = mapPadding.value)
+        } else {
+            PaddingValues(top = mapPadding.value)
+        }
+    }
+
+    suspend fun onOrientationUpdate() {
+        setExpandedView(isExpanded)
+        mapCameraState.value.position = mapCameraState.value.position.copy(padding = getMapPadding())
+    }
 
     fun setCity(city: City) {
         selectedCity.value = city
-        mapCameraState.value.position = CameraPosition(target = city.position, zoom = 8.0, padding = mapPadding.value)
+        mapCameraState.value.position = CameraPosition(target = city.position, zoom = 8.0, padding = getMapPadding())
     }
 
     suspend fun setPlace(place: Place) {
         isCityFocused = false
         selectedPlace.value = place
         mapCameraState.value.animateTo(
-            finalPosition = CameraPosition(target = place.position, zoom = 18.0, tilt = 30.0, padding = mapPadding.value),
+            finalPosition = CameraPosition(target = place.position, zoom = 18.0, tilt = 30.0, padding = getMapPadding()),
             duration = 1000.milliseconds
         )
     }
@@ -62,7 +78,7 @@ class MainViewModel : ViewModel() {
         if (!isCityFocused) {
             selectedCity.value?.let {
                 mapCameraState.value.animateTo(
-                    finalPosition = CameraPosition(target = it.position, zoom = 8.0, padding = mapPadding.value),
+                    finalPosition = CameraPosition(target = it.position, zoom = 8.0, padding = getMapPadding()),
                     duration = 1000.milliseconds
                 )
             }
@@ -75,10 +91,15 @@ class MainViewModel : ViewModel() {
     }
 
     suspend fun setExpandedView(expanded: Boolean) {
+        isExpanded = expanded
         mapPadding.value = if (expanded) {
-            PaddingValues(top = 500.dp) // Increase padding to show more info
+            500.dp
         } else {
-            PaddingValues(top = 300.dp) // Default padding
+            if (isHorizontal.value) {
+                400.dp
+            } else {
+                300.dp
+            }
         }
         // Re-center camera with new padding if a place is selected
         //selectedPlace.value?.let {
