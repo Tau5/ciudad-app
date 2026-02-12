@@ -1,27 +1,20 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez
 
-import android.graphics.Camera
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.components.MainHostScreen
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.data.Category
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.data.City
-import com.example.p4_ciudad_pabloalonsosergiorodriguez.data.DataSource
 import com.example.p4_ciudad_pabloalonsosergiorodriguez.data.Place
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
 import org.maplibre.compose.camera.CameraPosition
 import org.maplibre.compose.camera.CameraState
-import java.util.Optional
 import kotlin.collections.listOf
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -41,6 +34,9 @@ class MainViewModel : ViewModel() {
 
     var mapPadding: MutableState<PaddingValues> = mutableStateOf(PaddingValues(top = 300.dp))
         private set
+
+    var searchQueryState: MutableState<String> = mutableStateOf("")
+    var isSearching = mutableStateOf(false)
 
     var nextScreen: MainHostScreen? = null
 
@@ -97,9 +93,18 @@ class MainViewModel : ViewModel() {
     @Composable
     fun getPlacesList(): List<Pair<String, Place>> {
         return selectedCity.value?.let { city ->
-            city.places
-                .filter { it.category == selectedCategory.value }
-                .map{ Pair(stringResource(it.name), it) }
+            val filteredPlaces = if (isSearching.value) {
+                city.places
+                    .filter {
+                        val name = stringResource(it.name)
+                        name.contains(searchQueryState.value, true)
+                    }
+            } else {
+                city.places
+                    .filter { it.category == selectedCategory.value }
+            }
+
+            filteredPlaces.map{ Pair(stringResource(it.name), it) }
         } ?: run {
             listOf()
         }
@@ -118,5 +123,10 @@ class MainViewModel : ViewModel() {
             navHostController.navigate(it.name)
             nextScreen = null
         }
+    }
+
+    fun cancelSearch() {
+        searchQueryState.value = ""
+        isSearching.value = false
     }
 }

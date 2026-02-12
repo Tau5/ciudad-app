@@ -1,5 +1,6 @@
 package com.example.p4_ciudad_pabloalonsosergiorodriguez.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -44,12 +45,13 @@ fun SelectionHost(
         NavHost(
             navController,
             startDestination = "CategorySelection",
-            modifier = modifier.fillMaxWidth().fillMaxHeight()
+            modifier = Modifier.fillMaxWidth().fillMaxHeight()
         ) {
             composable(route = SelectionScreen.CategorySelection.name) {
                 LaunchedEffect(navController.currentBackStackEntry) {
                     if (navController.currentBackStackEntry?.destination?.route == SelectionScreen.CategorySelection.name) {
                         coroutineScope.launch {
+                            viewModel.cancelSearch()
                             viewModel.setExpandedView(false)
                             viewModel.focusCity();
                         }
